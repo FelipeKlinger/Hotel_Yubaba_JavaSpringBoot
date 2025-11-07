@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/tasquesAdmin.css}">
+
+    <title>Admin Panel - Tasques</title>
+</head>
+<body>
+
+      <header class="navbar">
+        <div class="logo">
+            <a th:href="@{/admin/dashboard}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Inici</a>
+            <a th:href="@{/admin/hotels}">Hotels</a>
+            <a th:href="@{/admin/habitacions}">Habitacions</a>
+            <a th:href="@{/admin/reserves/llistat}">Reserves</a>
+            <a th:href="@{/admin/empleats}">Empleats</a>
+            <a th:href="@{/admin/tasques}">Tasques</a>
+            <form th:action="@{/logout}" method="POST" class="logout-form">
+                <button type="submit" class="logout">Sortir</button>
+            </form>
+        </nav>
+        <div class="input-group">
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div>
+    </header>
+
+    <h2>Gestió de tasques</h2>
+
+
+<form th:action="@{/assignar}" method="post" class="assignar-tasca">
+    <label>Selecciona empleat:</label>
+    <select name="empleatId">
+        <option th:each="empleat : ${empleats}" 
+                th:value="${empleat.id}" 
+                th:text="${empleat.nom + ' ' + empleat.cognom}"></option>
+    </select>
+
+    <label>Selecciona tasca:</label>
+    <select name="tascaId">
+        <option th:each="tasca : ${tasques}" 
+                th:value="${tasca.id}" 
+                th:text="${tasca.descripcio}"></option>
+    </select>
+
+    <button type="submit">Assignar Tasca</button>
+</form>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Tasca</th>
+            <th>Empleats</th>
+            <th>Estat actual</th>
+            <th>Canviar estat</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="tasca : ${tasques}">
+            <td th:text="${tasca.descripcio}"></td>
+            <td>
+                <ul>
+                    <li th:each="emp : ${tasca.empleats}" 
+                        th:text="${emp.nom + ' ' + emp.cognom}"></li>
+                </ul>
+            </td>
+            <td th:text="${tasca.estat}"></td>
+            <td>
+                <form th:action="@{/tasques/canviarEstat}" method="post" class="assignar-tasca" >
+                    <input type="hidden" name="tascaId" th:value="${tasca.id}" />
+                    <select name="estat">
+                        <option value="PENDENT">Pendent</option>
+                        <option value="EN_PROGRÉS">EN_PROGRÉS</option>
+                        <option value="COMPLETADA">COMPLETADA</option>
+                    </select>
+                    <button type="submit">Actualitzar</button>
+                </form>
+            </td>
+
+            <td> 
+                <form th:action="@{/tasques/eliminar}" method="post">
+                    <input type="hidden" name="tascaId" th:value="${tasca.id}" />
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<a th:href="@{crearTasques}" class="button">Crear Tasca</a>
+    
+</body>
+</html>

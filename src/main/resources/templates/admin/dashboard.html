@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/dashboardAdmin.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Panel Admin - Yubaba</title>
+</head>
+
+<body>
+  
+    <header class="navbar">
+        <div class="logo">
+            <a th:href="@{/admin/dashboard}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Inici</a>
+            <a th:href="@{/admin/hotels}">Hotels</a>
+            <a th:href="@{/admin/habitacions}">Habitacions</a>
+            <a th:href="@{/admin/reserves/llistat}">Reserves</a>
+            <a th:href="@{/admin/empleats}">Empleats</a>
+            <a th:href="@{/admin/tasques}">Tasques</a>
+            <form th:action="@{/logout}" method="POST" class="logout-form">
+                <button type="submit" class="logout">Sortir</button>
+            </form>
+        </nav>
+        <div class="input-group">
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div>
+    </header>
+
+    <main class="admin-main">
+        <h1 class="admin-title">Gestión de Administrador</h1>
+        
+        <div class="admin-cards">
+            <a th:href="@{/admin/hotels}" class="admin-card">
+                <i class="fas fa-hotel"></i>
+                <h2>Hotels</h2>
+                <p class="card-description">Gestiona els Hotels</p>
+            </a>
+            
+            <a th:href="@{/admin/habitacions}" class="admin-card">
+                <i class="fas fa-bed"></i>
+                <h2>Habitacions</h2>
+                <p class="card-description">Gestiona les habitacions disponibles a cada hotel</p>
+            </a>
+            
+            <a th:href="@{/admin/reserves/llistat}" class="admin-card">
+                <i class="fas fa-calendar-check"></i>
+                <h2>Reserves</h2>
+                <p class="card-description">Consulta i administra totes les reserves realitzades</p>
+            </a>
+            
+            <a th:href="@{/admin/empleats}" class="admin-card">
+                <i class="fas fa-users"></i>
+                <h2>Empleats</h2>
+                <p class="card-description">Administra el personal i els permisos d'accés</p>
+            </a>
+            
+            <a th:href="@{/admin/tasques}" class="admin-card">
+                <i class="fas fa-tasks"></i>
+                <h2>Tasques</h2>
+                <p class="card-description">Assigna i supervisa tasques a l'equip de treball</p>
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>

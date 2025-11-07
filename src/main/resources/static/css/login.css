@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeIn 1.5s ease-in-out;
+
+  }
+
+  
+  
+  /* NAVBAR NEGRO */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .logo a {
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+
+  .logo a:hover {
+    text-decoration: none;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #ffd700;
+  }
+  
+  .menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  /* LOGIN FORM */
+  .main-login {
+    max-width: 500px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .main-login h1 {
+    color: #e05757;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 2.4rem;
+    font-style: italic;
+    font-weight: bold;
+  }
+  
+  .contenedor form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* INPUT CON ÍCONOS */
+  .input-group {
+    position: relative;
+  }
+  
+  .input-group i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 1rem;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  button {
+    padding: 0.8rem;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background-color: #222;
+  }
+  
+  a {
+    color: #000;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    align-self: start;
+  }
+  
+  /* Hacer que el menú se oculte en pantallas pequeñas */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; /* Ocultar el menú en pantallas pequeñas */
+      flex-direction: column; /* Apilar los enlaces verticalmente */
+      gap: 1.5rem;
+      background-color: #000;
+      width: 100%;
+      padding: 1rem 0;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      z-index: 100;
+      text-align: center;
+    }
+  
+    .nav-links.active {
+      display: flex; /* Mostrar el menú cuando tenga la clase 'active' */
+    }
+  
+    .menu-icon {
+      display: block; /* Mostrar el icono de menú en pantallas pequeñas */
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

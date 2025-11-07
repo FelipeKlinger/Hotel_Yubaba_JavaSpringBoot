@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" th:href="@{/css/client.css}">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <a th:href="@{/client/home}">Yubaba</a>
+    </div>
+    <nav class="nav-links" id="nav-links">
+      <a th:href="@{/}">Inici</a>
+      <a th:href="@{/client/hotels}">Hotels</a>
+      <a th:href="@{/client/reserves/llistat}">Reserves</a>
+      <a th:href="@{/client/MostrarClient}">Perfil</a>
+      <form th:action="@{/logout}" method="POST" class="logout-form">
+        <button type="submit" class="logout">Sortir</button>
+      </form>
+    </nav>
+    <div class="input-group">
+      <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+    </div>
+    <div class="menu-icon" id="menu-toggle">&#9776;</div>
+  </header>
+
+  <main class="container">
+    <section class="bienvenida">
+      <h1>Benvingut, <span th:text="${nom}">Nom</span> <span th:text="${cognom}">Cognom</span>!</h1>
+      <p>Estem encantats de tornar a veure’t.</p>
+    </section>
+
+    <section class="acciones">
+      <div class="card">
+        <i class="fa-solid fa-hotel icon"></i>
+        <h2>Explora Hotels</h2>
+        <p>Consulta i reserva habitacions disponibles.</p>
+        <a th:href="@{/client/hotels}" class="btn">Veure Hotels</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-calendar-check icon"></i>
+        <h2>Les Meves Reserves</h2>
+        <p>Gestiona les teves reserves actuals.</p>
+        <a th:href="@{reserves/llistat}" class="btn">Veure Reserves</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-user-circle icon"></i>
+        <h2>El Meu Perfil</h2>
+        <p>Edita la teva informació personal i dades de contacte.</p>
+        <a th:href="@{MostrarClient}" class="btn">Veure Perfil</a>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

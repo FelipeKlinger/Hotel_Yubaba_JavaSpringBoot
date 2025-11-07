@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>comentari</td>
+                <td>Email del usuari</td>
+                <td>data_creacio</td>
+                <td>Estat</td>
+                <td>Reserva</td>
+                <td>Estado real</td>
+
+
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="val: ${valoracio}">
+                <td th:text="${val.id}"></td>
+                <td th:text="${val.comentari}"></td>
+                <td th:text="${val.email}"></td>
+                <td th:text="${val.data_creacio}"></td>
+                <td>
+                    <form th:action="@{/canviEstat/{id}(id=${val.id})}" method="post">
+                        <button type="submit">estat</button> 
+                    </form>
+                </td>
+                <td th:text="${val.reserva.id}"></td>
+                <td th:text="${val.llegit}"></td>
+
+
+                
+                <td>
+
+                </td>
+            </tr>
+        </tbody>
+
+
+    
+</body>
+</html>

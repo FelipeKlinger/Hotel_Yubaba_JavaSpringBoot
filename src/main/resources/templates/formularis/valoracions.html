@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Valorar la teva reserva</h2>
+
+<form th:action="@{/valoracions/guardar}" th:object="${valoracio}" method="post">
+    <input type="hidden" th:field="*{reserva.id}" />
+
+    
+    <label>Puntuació (1 a 10):</label>
+    <input type="number" th:field="*{puntuacio}" min="1" max="10" required />
+
+    <label>Comentari:</label>
+    <textarea th:field="*{comentari}"></textarea>
+
+    <button type="submit">Enviar valoració</button>
+</form>
+
+
+</body>
+</html>

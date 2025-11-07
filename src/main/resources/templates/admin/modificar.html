@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/MostrarClient.css}" />
+    <title>Panel Admin - Modificar reserves</title>
+
+<head>
+    <title>Modificar Reserva</title>
+</head>
+<body>
+      <header class="navbar">
+        <div class="logo">
+            <a th:href="@{/admin/dashboard}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Inici</a>
+            <a th:href="@{/admin/hotels}">Hotels</a>
+            <a th:href="@{/admin/habitacions}">Habitacions</a>
+            <a th:href="@{/admin/reserves/llistat}">Reserves</a>
+            <a th:href="@{/admin/empleats}">Empleats</a>
+            <a th:href="@{/admin/tasques}">Tasques</a>
+            <form th:action="@{/logout}" method="POST" class="logout-form">
+                <button type="submit" class="logout">Sortir</button>
+            </form>
+        </nav>
+        <div class="input-group">
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div>
+    </header>
+
+    <h1 style="text-align: center;">Modificar Reserva</h1>
+
+    <form th:action="@{/admin/reserves/guardarModificacio}" th:object="${reserva}" method="post" class="client-form">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label for="data_inici">Fecha de Inicio:</label>
+            <input type="date" id="data_inici" th:field="*{data_inici}" required="required"/>
+            <p th:if="${#fields.hasErrors('data_inici')}" th:errors="*{data_inici}"></p>
+        </div>
+
+         <div class="form-group">
+            <label for="data_fi">Fecha de Fin:</label>
+            <input type="date" id="data_fi" th:field="*{data_fi}" required="required"/>
+            <p th:if="${#fields.hasErrors('data_fi')}" th:errors="*{data_fi}"></p>
+        </div>
+
+         <div class="form-group">
+            <label for="tipus_reserva">Tipo de Reserva:</label>
+            <select id="tipus_reserva" th:field="*{tipus_reserva}">
+                <option th:each="tipus : ${tipusReserves}" th:value="${tipus}" th:text="${tipus}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('tipus_reserva')}" th:errors="*{tipus_reserva}"></p>
+        </div>
+
+         <div class="form-group">
+            <label for="tipus_iva">Tipo de IVA:</label>
+            <input type="number" id="tipus_iva" th:field="*{tipus_iva}" required="required"/>
+            <p th:if="${#fields.hasErrors('tipus_iva')}" th:errors="*{tipus_iva}"></p>
+        </div> <br>
+
+        <button type="submit" class="submit-button">Guardar Modificaciones</button>
+        <a th:href="@{/admin/reserves/llistat}">Cancelar</a>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <link rel="stylesheet" th:href="@{/css/EmpleatsUpadate.css}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+   <title> Panel Admin - Alta Empleat</title>
+</head>
+<body>
+  
+  <header class="navbar">
+    <div class="logo">
+        <a th:href="@{/admin/dashboard}">Yubaba</a>
+    </div>
+    <nav class="nav-links" id="nav-links">
+        <a th:href="@{/}">Inici</a>
+        <a th:href="@{/admin/hotels}">Hotels</a>
+        <a th:href="@{/admin/habitacions}">Habitacions</a>
+        <a th:href="@{/admin/reserves/llistat}">Reserves</a>
+        <a th:href="@{/admin/empleats}">Empleats</a>
+        <a th:href="@{/admin/tasques}">Tasques</a>
+        <form th:action="@{/logout}" method="POST" class="logout-form">
+            <button type="submit" class="logout">Sortir</button>
+        </form>
+    </nav>
+    <div class="input-group">
+        <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+    </div>
+    <div class="menu-icon" id="menu-toggle">&#9776;</div>
+</header>
+
+    
+ <h2 class="bienvenida">Donar d'Alta Empleat</h2>
+
+<form th:action="@{/registrarEmpleat}" method="post" th:object="${empleat}" class="client-form">
+
+    <div class="form-group">
+        <label>Nom:</label>
+        <input type="text" th:field="*{nom}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Cognom:</label>
+        <input type="text" th:field="*{cognom}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Adreça:</label>
+        <input type="text" th:field="*{adreça}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Document Identitat:</label>
+        <input type="text" th:field="*{document_identitat}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Data Naixement:</label>
+        <input type="date" th:field="*{data_naixement}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Telèfon:</label>
+        <input type="text" th:field="*{telefon}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Lloc Feina:</label>
+        <input type="text" th:field="*{llocFeina}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Data Contractació:</label>
+        <input type="date" th:field="*{data_contractacio}" required>
+    </div>
+
+    <div class="form-group">
+        <label>Salari Brut:</label>
+        <input type="number" step="0.01" th:field="*{salariBrut}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="estat">Estat Laboral:</label>
+        <select id="estat" th:field="*{estat}" required>
+            <option value="ACTIU">ACTIU</option>
+            <option value="BAIXA">BAIXA</option>
+            <option value="PERMIS">PERMIS</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="tasques">Tasques asignades:</label>
+        <select id="tasques" name="tasques" th:field="*{tasques}" multiple required>
+            <option th:each="tasca : ${tasques}" th:value="${tasca.id}" th:text="${tasca.descripcio}"></option>
+        </select>
+    </div>
+
+    <button type="submit" class="submit-button">Donar alta empleat</button>
+
+</form>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" th:href="@{/css/formularis.css}">
+
+    <title>Panel Client - Alta Client </title>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+          <a th:href="@{/}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+          <a th:href="@{/}">Inici</a>
+      <a th:href="@{/client/hotels}">Hotels</a>
+      <a th:href="@{/client/reserves/llistat}">Reserves</a>
+      <a th:href="@{/client/MostrarClient}">Perfil</a>
+      
+        </nav>
+        <!-- Sección de iconos a la derecha -->
+        <div class="input-group">
+
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div> <!-- Icono de menú móvil -->
+      </header>
+
+
+    <h2 class="tittle">Doneu-vos d'alta amb nosaltres</h2>
+
+
+    <div class="contenedor">
+        <form th:action="@{/registrarClient}" method="post" th:object="${Client}">
+            <div class="caja">
+                <label>Nom:</label>
+                <input type="text" th:field="*{nom}" required><br>
+                
+                <label>Cognom:</label>
+                <input type="text" th:field="*{cognom}" required><br>
+                
+                <label>Adreça:</label>
+                <input type="text" th:field="*{adreça}" required><br>
+                
+                <label>Document Identitat:</label>
+                <input type="text" th:field="*{document_identitat}" required><br>
+                
+                <label>Data Naixement:</label>
+                <input type="date" th:field="*{data_naixement}" required><br>
+            </div>
+            <div class="caja">
+                <label>Telèfon:</label>
+                <input type="text" th:field="*{telefon}" required><br>
+                
+                <label>Email:</label>
+                <input type="email" th:field="*{email}" required><br>
+
+                 <label>Contrasenya:</label>
+                <input type="password" id="password" name="password" required><br>
+                
+                <label>Data Registre:</label>
+                <input type="date" th:field="*{data_registre}" required><br>
+                
+                <label>Tipus:</label>
+                <select th:field="*{tipus}" required>
+                    <option value="REGULAR">REGULAR</option>
+                    <option value="VIP">VIP</option>
+                    <option value="PREMIUM">PREMIUM</option>
+                </select><br>
+                
+                <label>Targeta de Credit:</label>
+                <input type="number" th:field="*{targeta_credit}" required><br>
+
+                
+                <button type="submit">Donar alta client</button>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin - Llistat d'Habitacions</title>
+    <link rel="stylesheet" th:href="@{/css/habitacionsAdmin.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+<body>
+    
+ <header class="navbar">
+        <div class="logo">
+            <a th:href="@{/admin/dashboard}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Inici</a>
+            <a th:href="@{/admin/hotels}">Hotels</a>
+            <a th:href="@{/admin/habitacions}">Habitacions</a>
+            <a th:href="@{/admin/reserves/llistat}">Reserves</a>
+            <a th:href="@{/admin/empleats}">Empleats</a>
+            <a th:href="@{/admin/tasques}">Tasques</a>
+            <form th:action="@{/logout}" method="POST" class="logout-form">
+                <button type="submit" class="logout">Sortir</button>
+            </form>
+        </nav>
+        <div class="input-group">
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div>
+    </header>
+
+    <h1>Consulta d'habitacions</h1>
+
+    <form method="post" th:action="@{/admin/habitaciones/filtrar}">
+        <label for="hotel">Hotel:</label>
+        <select name="hotelId" id="hotel">
+            <option value="">-- Tots els hotels --</option>
+            <option th:each="hotel : ${hotels}" 
+                    th:value="${hotel.id}" 
+                    th:text="${hotel.nom}"></option>
+        </select>
+
+        <label for="tipus">Tipus d'habitació:</label>
+        <select name="tipus" id="tipus">
+            <option value="">-- Tots els tipus --</option>
+            <option value="SIMPLE">SIMPLE</option>
+            <option value="DOBLE">DOBLE</option>
+            <option value="SUITE">SUITE</option>
+        </select>
+
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <br/>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hotel</th>
+                <th>Número</th>
+                <th>Capacitat</th>
+                <th>Descripció</th>
+                <th>Tipus</th>
+                <th>Estat</th>
+                <th>Preu MP</th>
+                <th>Preu AD</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="habitacio : ${habitacions}">
+                <td th:text="${habitacio.hotel.nom}"></td>
+                <td th:text="${habitacio.numero}"></td>
+                <td th:text="${habitacio.capacitat}"></td>
+                <td th:text="${habitacio.descripcio}"></td>
+                <td th:text="${habitacio.tipus}"></td>
+                <td th:text="${habitacio.estat}" 
+    th:classappend="${habitacio.estat.name() == 'DISPONIBLE'} ? 'disponible' : 'ocupada'">
+</td>
+
+                <td th:text="${habitacio.preuNitMP} + ' €'"></td>
+                <td th:text="${habitacio.preuNitAD} + ' €'"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

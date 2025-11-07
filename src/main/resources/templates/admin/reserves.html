@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/reservesAdmin.css}" />
+    <title>Panel Admin - Reserves</title>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a th:href="@{/admin/dashboard}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Inici</a>
+            <a th:href="@{/admin/hotels}">Hotels</a>
+            <a th:href="@{/admin/habitacions}">Habitacions</a>
+            <a th:href="@{/admin/reserves/llistat}">Reserves</a>
+            <a th:href="@{/admin/empleats}">Empleats</a>
+            <a th:href="@{/admin/tasques}">Tasques</a>
+            <a th:href="@{/admin/valoracion}">Valoracions</a>
+
+            <form th:action="@{/logout}" method="POST" class="logout-form">
+                <button type="submit" class="logout">Sortir</button>
+            </form>
+        </nav>
+        <div class="input-group">
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Data Reserva</th>
+                <th>Data d'inici</th>
+                <th>Data Fi</th>
+                <th>Tipus de reserva</th>
+                <th>Descripció</th>
+                <th>Estat</th>
+                <th>Preu Total de la reserva</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="reserva : ${reserves}">
+                <td th:text="${#dates.format(reserva.data_reserva, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#dates.format(reserva.data_inici, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#dates.format(reserva.data_fi, 'dd/MM/yyyy')}"></td>
+                <td th:text="${reserva.tipus_reserva}"></td>
+                 <td th:text = "${reserva.habitacio.numero + ' - ' + reserva.habitacio.descripcio}"></td>
+                 <td th:text = "${reserva.habitacio.estat}"></td>
+                 
+                <td th:text="${#numbers.formatDecimal(reserva.preu_total_reserva, 0, 'COMMA', 2, 'POINT')}"></td>
+                <td>
+                    <form th:action="@{/admin/reserves/eliminar/{id}(id=${reserva.id})}" method="post">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                    <a th:href="@{/admin/reserves/factura/{id}(id=${reserva.id})}">
+                        <button>Factura</button>
+                    </a>
+                    <form th:action="@{/admin/reserves/confirmar/{id}(id=${reserva.id})}" method="post">
+                        <button type="submit">Confirmar</button> 
+                    </form>
+                    <a th:href="@{/admin/reserves/modificar/{id}(id=${reserva.id})}">
+                        <button>Modificar</button>
+                    </a>
+                    
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+     <div th:if="${missatge}" class="alert alert-success">
+        <p th:text="${missatge}"></p>
+    </div>
+    <div th:if="${error}" class="alert alert-danger">
+        <p th:text="${error}"></p>
+    </div>
+
+</body>
+</html>

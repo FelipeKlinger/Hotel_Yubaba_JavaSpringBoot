@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Llistat de Categories</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Els nostres hotels tenen les següents Categories</h1>
+        <ul class="category-list">
+            <li th:each="categoria : ${categories}" th:text="${categoria.nom}"></li>
+        </ul>
+    </div>
+</body>
+</html>

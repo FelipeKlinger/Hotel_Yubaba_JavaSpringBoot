@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* NAVBAR NEGRO */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: white;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  max-width: 100%;
+}
+
+.logo a {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  color: #e05757;
+  text-decoration: none;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #e05757;
+}
+
+.input-group {
+  display: flex;
+  gap: 1.2rem;
+  margin-left: auto;
+}
+
+.input-group i {
+  color: white;
+  font-size: 1.0rem;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.logout-form {
+  display: flex;
+  align-items: center;
+}
+
+.logout {
+  background: none;
+  border: none;
+  color: white;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  transition: color 0.3s;
+}
+
+.logout:hover {
+  color: #e05757;
+}
+
+/* GENERAL */
+h2 {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin: 2rem 0 1.5rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.assignar-tasca {
+ width: 90%;
+  max-width: 600px;
+  margin: 1rem auto;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: 'Poppins', sans-serif;
+    
+
+}
+
+form label {
+  font-weight: 600;
+}
+
+form select, form button {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
+}
+
+form button {
+  background-color: #e05757;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #c94848;
+}
+
+/* TABLA */
+table {
+  width: 90%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #000;
+  color: white;
+}
+
+td ul {
+  padding-left: 1rem;
+}
+
+td form select {
+  margin-right: 0.5rem;
+}
+
+/* BOTÓN CREAR */
+a.button {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 0.75rem 1.5rem;
+  background-color: #000;
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+a.button:hover {
+  background-color: #e05757;
+}
+
+

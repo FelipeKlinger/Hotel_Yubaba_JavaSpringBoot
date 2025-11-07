@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Clients</title>
+   <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+    <div class="container">
+    <table class="empleats-list">       
+           <tr>
+                <th>Id</th>
+               <th>Nom</th>
+               <th>Cognom</th>
+           </tr>
+    
+
+           <tr th:each="cli : ${clients}">
+            <td th:text="${cli.getId}"></td>
+               <td th:text="${cli.getNom}"></td>
+               <td th:text="${cli.getCognom}"></td>
+           </tr>
+    
+
+
+   </table>
+
+</div>
+  </div>
+  
+</body>
+</html>

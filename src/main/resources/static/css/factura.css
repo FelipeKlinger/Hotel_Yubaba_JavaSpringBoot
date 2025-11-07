@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* NAVBAR NEGRO */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: white;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  max-width: 100%;
+}
+
+.logo a {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  color: #e05757;
+  text-decoration: none;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #e05757;
+}
+
+.input-group {
+  display: flex;
+  gap: 1.2rem;
+  margin-left: auto;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.input-group i {
+  color: white;
+  font-size: 1.0rem;
+}
+
+.logout-form {
+  display: flex;
+  align-items: center;
+}
+
+.logout {
+  background: none;
+  border: none;
+  color: white;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  transition: color 0.3s;
+}
+
+.logout-link:hover {
+  color: #e05757;
+}
+/* ESTILOS FACTURA SIMPLE */
+.factura-simple {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .factura-simple h1 {
+    font-family: 'Playfair Display', serif;
+    color: #e05757;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e05757;
+    padding-bottom: 0.5rem;
+  }
+  
+  .factura-info, .factura-detalle {
+    margin-bottom: 1.5rem;
+  }
+  
+  .factura-info p, .factura-detalle p {
+    margin-bottom: 0.8rem;
+    padding-left: 0.5rem;
+  }
+  
+  .factura-detalle {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+  }
+  
+  .factura-detalle .total {
+    font-size: 1.2rem;
+    color: #e05757;
+    margin-top: 1rem;
+  }
+  
+  @media print {
+    .navbar {
+      display: none;
+    }
+    
+    .factura-simple {
+      box-shadow: none;
+      padding: 0;
+      max-width: 100%;
+    }
+  }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <link rel="stylesheet" th:href="@{/css/formulariReserva.css}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+   <title>Seleccionar Fechas</title>
+</head>
+<body>
+   
+   <header class="navbar">
+    <div class="logo">
+      <a th:href="@{/client/home}">Yubaba</a>
+    </div>
+    <nav class="nav-links" id="nav-links">
+      <a th:href="@{/}">Inici</a>
+      <a th:href="@{/client/hotels}">Hotels</a>
+      <a th:href="@{/client/reserves/llistat}">Reserves</a>
+      <a th:href="@{/client/MostrarClient}">Perfil</a>
+      <form th:action="@{/logout}" method="POST" class="logout-form">
+        <button type="submit" class="logout">Sortir</button>
+      </form>
+    </nav>
+    <div class="input-group">
+      <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+    </div>
+    <div class="menu-icon" id="menu-toggle">&#9776;</div>
+  </header>
+
+    <div class="bienvenida"> 
+   <h1>Selecciona tus fechas</h1>
+</div>
+
+<div class="container"> 
+   <form th:action="@{/hotels/{id}/reserva(id=${hotel.id})}" method="post" th:object="${reserva}">
+       
+       <label>Fecha de inicio:</label>
+       <input type="date" th:field="*{data_inici}" required>
+
+       <label>Fecha final:</label>
+       <input type="date" th:field="*{data_fi}" required>
+
+       <div class="habitacion-seleccionada" th:if="*{habitacio != null}">
+         <label>Habitación seleccionada:</label>
+         <input type="text" th:value="*{habitacio.descripcio}" readonly>
+         <input type="hidden" th:field="*{habitacio.id}">
+      </div>
+      
+
+       <button type="submit">Buscar habitaciones</button>
+   </form>
+</div>
+
+
+
+</body>
+</html>

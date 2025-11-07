@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* NAVBAR NEGRO */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: white;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  max-width: 100%;
+}
+
+.logo a {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  color: #e05757;
+  text-decoration: none;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #e05757;
+}
+
+.input-group {
+  display: flex;
+  gap: 1.2rem;
+  margin-left: auto;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.input-group i {
+  color: white;
+  font-size: 1.0rem;
+}
+
+.image-top {
+  position: absolute;
+  top: -40px;
+  right: -100px;
+  z-index: 1;
+  transform: rotate(5deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-top img {
+  border-radius: 9rem;
+  width: 1000px; /* Ajusta el ancho */
+  height: 850px; /* Mantiene la proporción */
+}
+
+
+
+.navbar-container {
+  z-index: 2;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos específicos para la sección de reserva */
+.cont-bienvenida {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin-top: 40px;
+  margin-left: 90px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+h1 {
+  color: #e05757;
+  font-family: 'Playfair Display', serif;
+  font-size: 50px;
+  font-style: italic;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+h2 {
+  color: #555;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.features {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  max-width: 500px;
+}
+
+.feature-icon {
+  min-width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.button {
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px 0;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #333;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.ratings {
+  display: flex;
+  margin-top: 30px;
+}
+
+.google-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.stars {
+  display: flex;
+  margin-right: 10px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+}
+
+.opinions {
+  color: #666;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}

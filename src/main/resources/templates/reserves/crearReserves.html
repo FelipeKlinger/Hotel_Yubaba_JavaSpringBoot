@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/formulariReserva.css}">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+          <a th:href="@{/}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+          <a th:href="@{/}">Inicio</a>
+          <a href="#">Reservas</a>
+          <a href="#">Habitaciones</a>
+          <a href="#">Contacto</a>
+        </nav>
+        <!-- Sección de iconos a la derecha -->
+        <div class="input-group">
+
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+
+
+
+          
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div> <!-- Icono de menú móvil -->
+      </header>
+
+
+    <h1>Bienvenido, <span th:text="${nom}">nombre</span>!</h1>  <span th:text="${cognom}">cognom</span>
+
+
+    <h1 th:text="${hotel.nom}"></h1>
+
+    <form th:action="@{/ReservarHabitacio}" th:object="${reserva}" method="post">
+      
+    
+
+      <label>Tipus de Reserva</label>
+      <select th:field="*{tipus_reserva}" required>
+        <option value="AD">AD</option>
+        <option value="MP">MP</option>
+      </select>
+
+
+      <label>Tipus_IVA</label>
+      <select th:field="*{tipus_iva}" required>
+        <option value="10">10%</option>
+        <option value="21">21%</option>
+      </select>
+
+      <label>Habitacions</label>
+      <select th:field="*{habitacio.id}">
+          <option th:each="h : ${habitacions}" 
+                  th:value="${h.id}" 
+                  th:text="${h.numero + ' - ' + h.tipus + ' - ' + h.descripcio}"></option>
+      </select>
+      <input type="hidden" th:field="*{client.id}" /> 
+
+      <label>Metodo de Pagament</label>
+      <select name="metode_pagament" id="metode_pagament">
+        <option value="Efectiu">Efectiu</option>
+        <option value="Targeta">Targeta</option>
+      </select>
+
+
+      
+      <button type="submit">Reservar</button>
+
+      
+      </form>
+
+
+
+    
+
+    
+</body>
+</html>

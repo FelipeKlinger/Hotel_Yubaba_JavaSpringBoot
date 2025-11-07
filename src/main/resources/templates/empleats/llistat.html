@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Panel Admin - Empleats</title>
+   <link rel="stylesheet" th:href="@{/css/empleatsAdmin.css}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+   <header class="navbar">
+        <div class="logo">
+            <a th:href="@{/admin/dashboard}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+            <a th:href="@{/}">Inici</a>
+            <a th:href="@{/admin/hotels}">Hotels</a>
+            <a th:href="@{/admin/habitacions}">Habitacions</a>
+            <a th:href="@{/admin/reserves/llistat}">Reserves</a>
+            <a th:href="@{/admin/empleats}">Empleats</a>
+            <a th:href="@{/admin/tasques}">Tasques</a>
+            <form th:action="@{/logout}" method="POST" class="logout-form">
+                <button type="submit" class="logout">Sortir</button>
+            </form>
+        </nav>
+        <div class="input-group">
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div>
+    </header>
+
+    <div class="container">
+    <table class="empleats-list">       
+           <tr>
+                <th>Id</th>
+               <th>Nom</th>
+               <th>Cognom</th>
+               <th>Lloc Feina</th>
+                <th>Modificar</th> 
+           </tr>
+           
+           <tr>
+             <a th:href="@{crearEmpleat}" class="crear-empleat"><Button>Alta Empleat</Button></a>
+           </tr>
+    
+           <tr th:each="emp : ${empleats}">
+            <td th:text="${emp.getId}"></td>
+               <td th:text="${emp.getNom}"></td>
+               <td th:text="${emp.getCognom}"></td>
+               <td th:text="${emp.getLlocFeina}"></td>
+          
+                <td> 
+                <a th:href="@{/empleats/modificar/{id}(id=${emp.id})}">modificar</a>
+
+              </td>
+               <td>
+                <form th:action="@{/empleats/eliminar/{id}(id=${emp.id})}" method="post">
+                  <button type="submit" class="boton">Eliminar</button>
+                </form>
+              </td>
+
+             
+              
+            
+
+        </tr>
+
+
+   </table>
+   <br>
+
+</div>
+
+
+
+  </div>
+  
+</body>
+</html>

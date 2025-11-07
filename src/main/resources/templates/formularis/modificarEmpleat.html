@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" th:href="@{/css/EmpleatsUpadate.css}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <title>Panel Admin - Modificar Empleat</title>
+</head>
+<body>
+
+   <header class="navbar">
+    <div class="logo">
+        <a th:href="@{/admin/dashboard}">Yubaba</a>
+    </div>
+    <nav class="nav-links" id="nav-links">
+        <a th:href="@{/}">Inici</a>
+        <a th:href="@{/admin/hotels}">Hotels</a>
+        <a th:href="@{/admin/habitacions}">Habitacions</a>
+        <a th:href="@{/admin/reserves/llistat}">Reserves</a>
+        <a th:href="@{/admin/empleats}">Empleats</a>
+        <a th:href="@{/admin/tasques}">Tasques</a>
+        <form th:action="@{/logout}" method="POST" class="logout-form">
+            <button type="submit" class="logout">Sortir</button>
+        </form>
+    </nav>
+    <div class="input-group">
+        <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+    </div>
+    <div class="menu-icon" id="menu-toggle">&#9776;</div>
+</header>
+
+
+    <form th:action="@{/ModificarEmpleat}" method="post" th:object="${empleat}" class="client-form">
+
+        <input type="hidden" th:field="*{id}">
+
+        <input type="hidden" th:field="*{document_identitat}">
+        <input type="hidden" th:field="*{data_naixement}">
+        <input type="hidden" th:field="*{data_contractacio}">
+        <input type="hidden" th:field="*{usuari.id}">
+
+        <div class="form-group">
+         <label>Nom</label>
+        <input type="text" th:field="*{nom}" required><br> 
+        </div>
+
+    <div class="form-group">
+        <label>Cognom</label>
+        <input type="text" th:field="*{cognom}" required><br> 
+    </div>
+
+    <div class="form-group">
+        <label>Adreça:</label>
+        <input type="text" th:field="*{adreça}" required><br>
+    <div class="form-group">
+
+
+
+    <div class="form-group">
+        <label>Telèfon:</label>
+        <input type="text" th:field="*{telefon}" required><br>
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required><br>
+    </div>
+
+    <div class="form-group">
+        <label>Lloc de Feina:</label>
+        <input type="text" th:field="*{llocFeina}" required><br>
+    </div>
+
+        <div class="form-group">
+        <label for="estat">Estat Laboral:</label>
+        <select id="estat" th:field="*{estat}" required>
+            <option value="ACTIU">ACTIU</option>
+            <option value="BAIXA">BAIXA</option>
+            <option value="PERMIS">PERMIS</option>
+        </select>
+    </div>
+        
+    <div class="form-group">
+        <label>Salari Brut:</label>
+        <input type="number" step="0.01" th:field="*{salariBrut}" required><br>
+    </div>
+    <div class="form-group">        
+        <button type="submit" class="submit-button">Modificar perfil</button>
+    </form>
+
+    <br>
+
+
+    <form th:action="@{/empleats/AltaAdministrador/{id}(id=${empleat.id})}" method="post" >
+    <div class="form-group">
+        <label>Administrador</label> <br>
+        <button type="submit" class="submit-button">Fer administrador</button>
+    </div>
+    </form>
+    
+
+</body>
+</html>

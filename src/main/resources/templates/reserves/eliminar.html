@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/formulariReserva.css}">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+          <a th:href="@{/}">Yubaba</a>
+        </div>
+        <nav class="nav-links" id="nav-links">
+          <a th:href="@{/}">Inicio</a>
+          <a href="#">Reservas</a>
+          <a href="#">Habitaciones</a>
+          <a href="#">Contacto</a>
+        </nav>
+        <!-- Sección de iconos a la derecha -->
+        <div class="input-group">
+
+            <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+        </div>
+        <div class="menu-icon" id="menu-toggle">&#9776;</div> <!-- Icono de menú móvil -->
+      </header>
+
+
+      <h1>Bienvenido, <span th:text="${nom}">nombre</span>!</h1>  <span th:text="${cognom}">cognom</span>
+
+      <form th:action="@{/filtrardatas(id=${hotel.id})}" th:object="${reserva}" method="post">
+    
+        <label>Data de Inici</label>
+        <input type="date" th:field="*{data_inici}" required>
+  
+        <label>Data de fi</label>
+        <input type="date" th:field="*{data_fi}" required>
+
+        <input type="hidden" name="hotelId" th:value="${hotel.id}" />
+
+        
+        <button type="submit">Reservar</button>
+  
+        
+        </form>
+</body>
+</html>

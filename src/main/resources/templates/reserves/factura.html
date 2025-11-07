@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura - Yubaba</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/factura.css}">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <a th:href="@{/client/home}">Yubaba</a>
+    </div>
+    <nav class="nav-links" id="nav-links">
+      <a th:href="@{/}">Inici</a>
+      <a th:href="@{/client/hotels}">Hotels</a>
+      <a th:href="@{/client/reserves/llistat}">Reserves</a>
+      <a th:href="@{/client/MostrarClient}">Perfil</a>
+      <form th:action="@{/logout}" method="POST" class="logout-form">
+        <button type="submit" class="logout">Sortir</button>
+      </form>
+    </nav>
+    <div class="input-group">
+      <a th:href="@{/login}"><i class="fa-solid fa-user"></i></a>
+    </div>
+    <div class="menu-icon" id="menu-toggle">&#9776;</div>
+  </header>
+
+  <main class="factura-simple">
+    <h1>Factura</h1>
+    
+    <div class="factura-info">
+      <p><strong>Nom:</strong> <span th:text="${nom + ' ' + cognom}"></span></p>
+      <p><strong>Hotel:</strong> <span th:text="${hotel.nom}"></span></p>
+      <p><strong>Data emissió:</strong> <span th:text="${factura.data_emisio}"></span></p>
+      <p><strong>Mètode pagament:</strong> <span th:text="${factura.metode_pagament}"></span></p>
+    </div>
+    
+    <div class="factura-detalle">
+      <p><strong>Base imposable:</strong> <span th:text="${factura.base_imposable} + ' €'"></span></p>
+      <p><strong>IVA:</strong> <span th:text="${factura.iva} + '%'"></span></p>
+      <p class="total"><strong>Total:</strong> <span th:text="${factura.total} + ' €'"></span></p>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* NAVBAR (igual al que ya tenías) */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  color: white;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  max-width: 100%;
+}
+
+.logo a {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  color: #e05757;
+  text-decoration: none;
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #e05757;
+}
+
+.input-group {
+  display: flex;
+  gap: 1.2rem;
+  margin-left: auto;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.input-group i {
+  color: white;
+  font-size: 1.0rem;
+}
+
+.logout-form {
+  display: flex;
+  align-items: center;
+}
+
+.logout {
+  background: none;
+  border: none;
+  color: white;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  transition: color 0.3s;
+}
+
+/* ESTILOS PARA LA TABLA DE RESERVAS */
+table {
+  width: 90%;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #e05757;
+  color: white;
+}
+
+thead tr {
+  font-family: 'poppins', serif;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: center;
+}
+
+th {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #dddddd;
+  transition: all 0.3s ease;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:last-of-type {
+  border-bottom: 2px solid #e05757;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.01);
+}
+
+
+button {
+  background-color: #e05757;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #c14a4a;
+  transform: translateY(-2px);
+}
+
+a button {
+  text-decoration: none;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
