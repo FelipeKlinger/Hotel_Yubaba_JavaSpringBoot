@@ -9,10 +9,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "empleats")
-public class Empleat extends Persona{
+public class Empleat extends Persona {
 
     private String llocFeina;
     private LocalDate data_contractacio;
@@ -21,13 +20,12 @@ public class Empleat extends Persona{
     private EstatLaboral estat;
 
     public Empleat() {
-        
+
     }
-    
+
     @ManyToMany
     private List<Tasca> tasques;
 
- 
     public Empleat(Long id, String nom, String cognom, String adreça, String document_identitat,
             LocalDate data_naixement, String telefon, String email, Usuari usuari, String llocFeina,
             LocalDate data_contractacio, double salariBrut, EstatLaboral estat, List<Tasca> tasques) {
@@ -75,10 +73,8 @@ public class Empleat extends Persona{
         return tasques;
     }
 
-
     public void setTasques(List<Tasca> tasques) {
         this.tasques = tasques;
     }
-    
-    
+
 }

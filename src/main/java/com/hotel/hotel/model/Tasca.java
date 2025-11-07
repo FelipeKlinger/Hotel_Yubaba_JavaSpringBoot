@@ -12,98 +12,88 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
 @Entity
 @Table(name = "tasques")
 public class Tasca {
-    
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)  
-private Long id;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-private String descripcio;
+    private String descripcio;
 
+    @Column(nullable = false)
+    private Date data_creacio;
 
+    @Column(nullable = false)
+    private Date data_ejecucio;
 
-@Column (nullable = false)
-private Date data_creacio;
+    @Enumerated(EnumType.STRING)
+    private EstatTasca estat;
 
-@Column (nullable = false)
-private Date data_ejecucio;
+    @ManyToMany(mappedBy = "tasques")
+    private List<Empleat> empleats;
 
-@Enumerated(EnumType.STRING)
-private EstatTasca estat;
+    public Tasca() {
+    }
 
+    public Tasca(Long id, String descripcio, Date data_creacio, Date data_ejecucio, EstatTasca estat,
+            List<Empleat> empleats) {
+        this.id = id;
+        this.descripcio = descripcio;
+        this.data_creacio = data_creacio;
+        this.data_ejecucio = data_ejecucio;
+        this.estat = estat;
+        this.empleats = empleats;
+    }
 
+    public Long getId() {
+        return id;
+    }
 
-@ManyToMany(mappedBy = "tasques")
-private List<Empleat> empleats;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getDescripcio() {
+        return descripcio;
+    }
 
-public Tasca() {
-}
+    public void setDescripcio(String descripcio) {
+        this.descripcio = descripcio;
+    }
 
-public Tasca(Long id, String descripcio, Date data_creacio, Date data_ejecucio, EstatTasca estat, List<Empleat> empleats) {
-    this.id = id;
-    this.descripcio = descripcio;
-    this.data_creacio = data_creacio;
-    this.data_ejecucio = data_ejecucio;
-    this.estat = estat;
-    this.empleats = empleats;
-}
+    public Date getData_creacio() {
+        return data_creacio;
+    }
 
+    public void setData_creacio(Date data_creacio) {
+        this.data_creacio = data_creacio;
+    }
 
-public Long getId() {
-    return id;
-}
+    public Date getData_ejecucio() {
+        return data_ejecucio;
+    }
 
-public void setId(Long id) {
-    this.id = id;
-}
+    public void setData_ejecucio(Date data_ejecucio) {
+        this.data_ejecucio = data_ejecucio;
+    }
 
-public String getDescripcio() {
-    return descripcio;
-}
+    public EstatTasca getEstat() {
+        return estat;
+    }
 
-public void setDescripcio(String descripcio) {
-    this.descripcio = descripcio;
-}
+    public void setEstat(EstatTasca estat) {
+        this.estat = estat;
+    }
 
-public Date getData_creacio() {
-    return data_creacio;
-}
+    public List<Empleat> getEmpleats() {
+        return empleats;
+    }
 
-public void setData_creacio(Date data_creacio) {
-    this.data_creacio = data_creacio;
-}
-
-public Date getData_ejecucio() {
-    return data_ejecucio;
-}
-
-public void setData_ejecucio(Date data_ejecucio) {
-    this.data_ejecucio = data_ejecucio;
-}
-
-public EstatTasca getEstat() {
-    return estat;
-}
-
-public void setEstat(EstatTasca estat) {
-    this.estat = estat;
-}
-
-public List<Empleat> getEmpleats() {
-    return empleats;
-}
-
-public void setEmpleats(List<Empleat> empleats) {
-    this.empleats = empleats;
-}
-
-
-
-
-
+    public void setEmpleats(List<Empleat> empleats) {
+        this.empleats = empleats;
+    }
 
 }

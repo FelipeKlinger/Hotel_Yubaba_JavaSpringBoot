@@ -8,12 +8,12 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "usuaris")
+@Table(name = "usuaris")
 public class Usuari {
-    
+
     @Id
-@GeneratedValue(strategy = GenerationType.AUTO)    
-private Long id;  
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String username;
 
@@ -21,15 +21,12 @@ private Long id;
 
     private String email;
 
-    private String rol;  // ADMIN_ROLE, CLIENT_ROLE, EMPLEAT_ROLE
+    private String rol; // ADMIN_ROLE, CLIENT_ROLE, EMPLEAT_ROLE
 
     private boolean actiu;
 
-
-    @OneToOne (mappedBy = "usuari") // Esto significa que Usuari es el dueño de la relación en la base de datos
+    @OneToOne(mappedBy = "usuari") // Esto significa que Usuari es el dueño de la relación en la base de datos
     private Persona persona;
-
-
 
     public Usuari() {
     }
@@ -43,8 +40,6 @@ private Long id;
         this.actiu = actiu;
         this.persona = persona;
     }
-
-    
 
     public Long getId() {
         return id;
@@ -101,12 +96,5 @@ private Long id;
     public void setActiu(boolean actiu) {
         this.actiu = actiu;
     }
-
-    
-
-    
-
-
-
 
 }

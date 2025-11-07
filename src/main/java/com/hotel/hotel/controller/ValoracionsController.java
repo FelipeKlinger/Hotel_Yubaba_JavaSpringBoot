@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.hotel.hotel.repository.*;
 import com.hotel.hotel.model.*;
 
-
 @Controller
 public class ValoracionsController {
 
-
-       private ClientsRepository clientsRepository;
+    private ClientsRepository clientsRepository;
     private HabitacioRepository habitacioRepository;
     private UsuarisRepository usuariRepository;
     private HotelRepository hotelRepository;
@@ -29,11 +27,10 @@ public class ValoracionsController {
     private ValoracionsRepository ValoracionsRepository;
     private ReservaRepository reservaRepository;
 
-    
-    
     public ValoracionsController(ClientsRepository clientsRepository, HabitacioRepository habitacioRepository,
             UsuarisRepository usuariRepository, HotelRepository hotelRepository, FacturaRepository facturaRepository,
-            com.hotel.hotel.repository.ValoracionsRepository valoracionsRepository, ReservaRepository reservaRepository) {
+            com.hotel.hotel.repository.ValoracionsRepository valoracionsRepository,
+            ReservaRepository reservaRepository) {
         this.clientsRepository = clientsRepository;
         this.habitacioRepository = habitacioRepository;
         this.usuariRepository = usuariRepository;
@@ -44,22 +41,19 @@ public class ValoracionsController {
 
     }
 
-
     @GetMapping("/client/valoracion/{id}")
     public String mostrarFormulariValoracio(@PathVariable Long id, Model model) {
 
-    Optional<Reserva> reserva = reservaRepository.findById(id);
+        Optional<Reserva> reserva = reservaRepository.findById(id);
 
         Valoracions valoracio = new Valoracions();
 
-    
         valoracio.setReserva(reservaRepository.findById(id).get());
         model.addAttribute("valoracio", valoracio);
         return "formularis/valoracions";
     }
 
-
-      @PostMapping("/valoracions/guardar")
+    @PostMapping("/valoracions/guardar")
     public String guardarValoracio(@ModelAttribute Valoracions valoracio, Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -67,63 +61,55 @@ public class ValoracionsController {
         Optional<Usuari> usuari = usuariRepository.findByEmail(username);
         Client client = (Client) usuari.get().getPersona();
 
-
-        Optional<Reserva> reserva = reservaRepository.findByIdAndClientId(valoracio.getReserva().getId(), client.getId());
+        Optional<Reserva> reserva = reservaRepository.findByIdAndClientId(valoracio.getReserva().getId(),
+                client.getId());
 
         Reserva reserva2 = reserva.get();
         Habitacio habitacio = reserva2.getHabitacio();
 
-        if (reserva2.getHabitacio().getEstat().equals(EstatHabitacio.OCUPADA)) { // Ramon como no tengo otra forma de que lo verifique el ADMIN por el estado de la habitacion cuando se presente el cliente de resto no
-                    
-        model.addAttribute("client", client);
+        if (reserva2.getHabitacio().getEstat().equals(EstatHabitacio.OCUPADA)) { // Ramon como no tengo otra forma de
+                                                                                 // que lo verifique el ADMIN por el
+                                                                                 // estado de la habitacion cuando se
+                                                                                 // presente el cliente de resto no
 
-        valoracio.setData_creacio(LocalDate.now());
-        valoracio.setEmail(username);
-        ValoracionsRepository.save(valoracio);
+            model.addAttribute("client", client);
 
-        return "redirect:/client/reserves/llistat";
-    }
+            valoracio.setData_creacio(LocalDate.now());
+            valoracio.setEmail(username);
+            ValoracionsRepository.save(valoracio);
 
-    else {
+            return "redirect:/client/reserves/llistat";
+        }
 
-        return "error";
-    }
+        else {
 
-    
+            return "error";
+        }
+
     }
 
     @GetMapping("/admin/valoracion")
-public String mostrarValoracionsAdmin(Model model) {
+    public String mostrarValoracionsAdmin(Model model) {
 
-    List <Valoracions> valoracions = ValoracionsRepository.findAll();
+        List<Valoracions> valoracions = ValoracionsRepository.findAll();
 
-    model.addAttribute("valoracio", valoracions);
-    return "reserves/valoracions";
-}
+        model.addAttribute("valoracio", valoracions);
+        return "reserves/valoracions";
+    }
 
+    @PostMapping("/canviEstat/{id}")
+    public String llegit(@PathVariable Long id, Model model) {
 
-@PostMapping("/canviEstat/{id}")
-public String llegit(@PathVariable Long id, Model model) {
+        Optional<Valoracions> valo = ValoracionsRepository.findById(id);
 
-    Optional <Valoracions> valo = ValoracionsRepository.findById(id);
+        Valoracions valoracion1 = valo.get();
 
-    Valoracions valoracion1 = valo.get();
-    
-    valoracion1.setLlegit(true);
+        valoracion1.setLlegit(true);
 
-    ValoracionsRepository.save(valoracion1);
+        ValoracionsRepository.save(valoracion1);
 
-    return "redirect:/admin/reserves/llistat";
+        return "redirect:/admin/reserves/llistat";
 
+    }
 
-
-}
-
-
-    
-
-    
-
-    
-    
 }

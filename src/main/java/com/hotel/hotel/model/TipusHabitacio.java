@@ -6,5 +6,4 @@ public enum TipusHabitacio {
     DOBLE,
     SUITE
 
-
 }

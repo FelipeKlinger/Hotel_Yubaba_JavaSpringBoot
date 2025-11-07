@@ -10,7 +10,5 @@ import com.hotel.hotel.model.*;
 
 @Repository
 public interface ValoracionsRepository extends JpaRepository<Valoracions, Long> {
-    
-
 
 }

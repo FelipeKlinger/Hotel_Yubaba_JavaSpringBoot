@@ -1,6 +1,5 @@
 package com.hotel.hotel.model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +24,9 @@ public class Hotel {
     private String adreca;
     private String ciutat;
 
-
     @ManyToOne
     @JoinColumn(name = "categoria_id", nullable = false)
     private Categoria categoria;
-
 
     @OneToMany(mappedBy = "hotel")
     private List<Habitacio> habitacions;
@@ -37,7 +34,6 @@ public class Hotel {
     public Hotel() {
         this.habitacions = new ArrayList<>();
     }
-
 
     public Hotel(String nom, String adreca, String ciutat, Categoria categoria) {
         this.habitacions = new ArrayList<>();
@@ -87,15 +83,12 @@ public class Hotel {
         this.categoria = categoria;
     }
 
-
     public List<Habitacio> getHabitacions() {
         return habitacions;
     }
-
 
     public void setHabitacions(List<Habitacio> habitacions) {
         this.habitacions = habitacions;
     }
 
-    
 }

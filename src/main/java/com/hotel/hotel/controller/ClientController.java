@@ -22,23 +22,23 @@ import com.hotel.hotel.repository.UsuarisRepository;
 @Controller
 public class ClientController {
 
-    private  HotelRepository hotelRepository;
+    private HotelRepository hotelRepository;
     private ClientsRepository clientRepository;
     private UsuarisRepository usuariRepository;
 
-    public ClientController(HotelRepository hotelRepository, ClientsRepository clientRepository, UsuarisRepository usuariRepository) {
+    public ClientController(HotelRepository hotelRepository, ClientsRepository clientRepository,
+            UsuarisRepository usuariRepository) {
         this.clientRepository = clientRepository;
         this.hotelRepository = hotelRepository;
         this.usuariRepository = usuariRepository;
     }
-    
- @GetMapping("/client/hotels")
+
+    @GetMapping("/client/hotels")
     public String showCategories(Model model) {
         List<Hotel> hotels = hotelRepository.findAll();
         model.addAttribute("hotels", hotels);
-        return "hotels/llistat"; 
+        return "hotels/llistat";
     }
-
 
     @GetMapping("client/MostrarClient")
     public String mostrarClient(Model model) {
@@ -50,47 +50,38 @@ public class ClientController {
 
         model.addAttribute("client", client);
 
-        return "client/MostrarClient"; 
+        return "client/MostrarClient";
     }
 
     @PostMapping("/ModificarClient")
     public String modificarclient(@ModelAttribute Client client, @RequestParam("password") String password) {
-    
+
         Optional<Client> clientActual = clientRepository.findById(client.getId());
-    
+
         if (clientActual.isPresent()) {
             Client clientActualitzat = clientActual.get();
-    
-          
+
             clientActualitzat.setNom(client.getNom());
             clientActualitzat.setCognom(client.getCognom());
             clientActualitzat.setEmail(client.getEmail());
             clientActualitzat.setTelefon(client.getTelefon());
-            
-    
-            Usuari clientUsuari = clientActualitzat.getUsuari();
-    
-            
-            if (password != null && !password.isBlank()) {
-                clientUsuari.setPassword(password);             }
-    
-            clientUsuari.setUsername(client.getNom());
-            clientUsuari.setEmail(client.getEmail()); 
 
-            
+            Usuari clientUsuari = clientActualitzat.getUsuari();
+
+            if (password != null && !password.isBlank()) {
+                clientUsuari.setPassword(password);
+            }
+
+            clientUsuari.setUsername(client.getNom());
+            clientUsuari.setEmail(client.getEmail());
+
             usuariRepository.save(clientUsuari);
             clientRepository.save(clientActualitzat);
-    
-            return "redirect:/login"; 
+
+            return "redirect:/login";
         }
-    
+
         return "error";
     }
-    
-
-
-
-
 
 }
-

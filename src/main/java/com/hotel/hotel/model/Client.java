@@ -10,17 +10,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "clients")
 public class Client extends Persona {
-    
+
     private LocalDate data_registre;
 
     @Enumerated(EnumType.STRING)
     private CategoriaClient tipus;
-    
+
     private int targeta_credit;
 
-
     public Client() {
-        
+
     }
 
     public Client(Long id, String nom, String cognom, String adreça, String document_identitat,
@@ -30,7 +29,7 @@ public class Client extends Persona {
         this.data_registre = data_registre;
         this.tipus = tipus;
         this.targeta_credit = targeta_credit;
-    
+
     }
 
     public LocalDate getData_registre() {
@@ -57,10 +56,4 @@ public class Client extends Persona {
         this.targeta_credit = targeta_credit;
     }
 
-
-
-
-
-
-    
 }

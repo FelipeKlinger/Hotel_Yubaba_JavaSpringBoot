@@ -1,6 +1,5 @@
 package com.hotel.hotel.controller;
 
-
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -27,12 +26,11 @@ public class CategoriaController {
     public String showCategories(Model model) {
         List<Categoria> categories = categoriaRepository.findAll();
         model.addAttribute("categories", categories);
-        return "categoria/llistat"; 
+        return "categoria/llistat";
     }
 
-
     @GetMapping("/desar-categoria")
-    public String desar(){
+    public String desar() {
         Categoria c = new Categoria();
         c.setNom("Categoria nova");
         categoriaRepository.save(c);
@@ -48,16 +46,15 @@ public class CategoriaController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        return "principal";   
+        return "principal";
     }
 
-     @GetMapping("/recuperar-cookie")
-       public String home(HttpServletRequest request) {
+    @GetMapping("/recuperar-cookie")
+    public String home(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         System.out.println(cookies[0].getValue());
 
         return "principal";
-        }
-
+    }
 
 }

@@ -15,8 +15,6 @@ import com.hotel.hotel.repository.EmpleatsRepository;
 import com.hotel.hotel.repository.TascaRepository;
 import com.hotel.hotel.repository.UsuarisRepository;
 
-
-
 @Controller
 public class FormulariController {
 
@@ -24,9 +22,9 @@ public class FormulariController {
     private ClientsRepository clientRepository;
     private TascaRepository tascaRepository;
     private UsuarisRepository UsuarisRepository;
-    
 
-    public FormulariController(EmpleatsRepository empleatsRepository, ClientsRepository clientRepository  ,TascaRepository tascaRepository, UsuarisRepository UsuarisRepository) {
+    public FormulariController(EmpleatsRepository empleatsRepository, ClientsRepository clientRepository,
+            TascaRepository tascaRepository, UsuarisRepository UsuarisRepository) {
         this.empleatsRepository = empleatsRepository;
         this.tascaRepository = tascaRepository;
         this.clientRepository = clientRepository;
@@ -34,21 +32,16 @@ public class FormulariController {
 
     }
 
-
-
-
-
-
-    @GetMapping ("/altaclient")
+    @GetMapping("/altaclient")
     public String altaclient(Model model) {
-        List<Usuari> usuaris = UsuarisRepository.findAll(); 
+        List<Usuari> usuaris = UsuarisRepository.findAll();
         model.addAttribute("Client", new Client());
         model.addAttribute("usuaris", usuaris);
         return "formularis/altaclient";
     }
 
-    //Cliente
-    
+    // Cliente
+
     @PostMapping("/registrarClient")
     public String registreClient(Client client, @RequestParam("password") String password) {
         Usuari usuari = new Usuari();
@@ -57,7 +50,7 @@ public class FormulariController {
         usuari.setActiu(true);
         usuari.setRol("ROLE_CLIENT");
         usuari.setPassword(password);
-        usuari.setUsername(client.getNom());    
+        usuari.setUsername(client.getNom());
 
         usuari = UsuarisRepository.save(usuari);
 
@@ -65,24 +58,15 @@ public class FormulariController {
 
         clientRepository.save(client);
 
-
-        return "redirect:/login"; 
+        return "redirect:/login";
     }
 
-
-    
-
-    @GetMapping ("/clients/llistat")
+    @GetMapping("/clients/llistat")
     public String llistatClients(Model model) {
         model.addAttribute("clients", clientRepository.findAll());
         return "clients/llistat";
     }
 
-    //Cliente
-
-
-
-
-
+    // Cliente
 
 }

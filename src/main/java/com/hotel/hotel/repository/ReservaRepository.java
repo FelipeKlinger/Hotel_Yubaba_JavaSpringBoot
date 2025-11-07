@@ -13,15 +13,16 @@ import com.hotel.hotel.model.Reserva;
 
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
-    
 
-Optional<Reserva> findById(Long id);
-List<Reserva> findByClientId(Long clientId);
-Optional<Reserva> findByIdAndClientId(Long id, Long clientId);
+    Optional<Reserva> findById(Long id);
 
-@Query("SELECT r FROM Reserva r WHERE r.habitacio.hotel.id = :hotelId AND " + "(:dataInici <= r.data_fi AND :dataFi >= r.data_inici)")
-    List<Reserva> findReservasSolapadas(@Param("hotelId") Long hotelId, @Param("dataInici") Date dataInici, @Param("dataFi") Date dataFi);
+    List<Reserva> findByClientId(Long clientId);
 
+    Optional<Reserva> findByIdAndClientId(Long id, Long clientId);
 
+    @Query("SELECT r FROM Reserva r WHERE r.habitacio.hotel.id = :hotelId AND "
+            + "(:dataInici <= r.data_fi AND :dataFi >= r.data_inici)")
+    List<Reserva> findReservasSolapadas(@Param("hotelId") Long hotelId, @Param("dataInici") Date dataInici,
+            @Param("dataFi") Date dataFi);
 
 }

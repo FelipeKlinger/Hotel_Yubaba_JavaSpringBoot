@@ -7,14 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.hotel.hotel.model.*;
 
-
-public interface UsuarisRepository extends JpaRepository<Usuari, Long>{
+public interface UsuarisRepository extends JpaRepository<Usuari, Long> {
 
     Optional<Usuari> findByEmail(String email);
+
     Optional<Usuari> findByUsername(String username);
 
-    
-
-    
-    
 }

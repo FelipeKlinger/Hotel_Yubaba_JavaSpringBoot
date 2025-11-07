@@ -1,7 +1,5 @@
 package com.hotel.hotel.config;
 
-
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,89 +11,71 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.hotel.hotel.service.CustomUserDetailsService;
 
-
-
 @Configuration
 
 public class SecurityConfig {
 
+    private final CustomUserDetailsService userDetailsService;
 
+    public SecurityConfig(CustomUserDetailsService userDetailsService) {
 
- private final CustomUserDetailsService userDetailsService;
+        this.userDetailsService = userDetailsService;
 
+    }
 
+    @Bean
 
- public SecurityConfig(CustomUserDetailsService userDetailsService) {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomLoginSuccessHandler successHandler)
+            throws Exception {
 
- this.userDetailsService = userDetailsService;
+        http
 
- }
+                .authorizeHttpRequests(auth -> auth
 
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
 
+                        .requestMatchers("/client/**").hasRole("CLIENT")
 
- @Bean
+                        .requestMatchers("/", "/altaclient", "/hotels", "/reserves/crear", "/hotels/{id}",
+                                "/registrarClient", "/login", "/register", "/css/**", "/js/**", "/images/**")
+                        .permitAll()
 
- public SecurityFilterChain securityFilterChain(HttpSecurity http,CustomLoginSuccessHandler successHandler) throws Exception {
+                        .anyRequest().authenticated()
 
- http
+                )
 
- .authorizeHttpRequests(auth -> auth
+                .formLogin(form -> form
 
- .requestMatchers("/admin/**").hasRole("ADMIN") 
+                        .loginPage("/login") // Indiquem la pàgina de login personalitzada
 
- .requestMatchers("/client/**").hasRole("CLIENT")
+                        .successHandler(successHandler)
 
- .requestMatchers("/", "/altaclient", "/hotels", "/reserves/crear", "/hotels/{id}", "/registrarClient", "/login", "/register", "/css/**", "/js/**", "/images/**").permitAll()
+                        .permitAll()
 
- .anyRequest().authenticated() 
+                )
 
+                .logout(logout -> logout.logoutUrl("/logout").permitAll());
 
+        return http.build();
 
+    }
 
- )
+    @Bean
 
- .formLogin(form -> form
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 
- .loginPage("/login") // Indiquem la pàgina de login personalitzada
+        return authConfig.getAuthenticationManager();
 
- .successHandler(successHandler)
+    }
 
- .permitAll()
+    @Bean
 
- )
+    public PasswordEncoder passwordEncoder() {
 
- .logout(logout -> logout.logoutUrl("/logout").permitAll());
+        // return new BCryptPasswordEncoder();
 
+        return NoOpPasswordEncoder.getInstance(); // NO SEGUR, només per proves
 
-
- return http.build();
-
- }
-
-
-
- @Bean
-
- public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-
- return authConfig.getAuthenticationManager();
-
- }
-
-
-
- @Bean
-
- public PasswordEncoder passwordEncoder() {
-
- //return new BCryptPasswordEncoder();
-
- return NoOpPasswordEncoder.getInstance(); // NO SEGUR, només per proves
-
- 
-
- 
-
- }
+    }
 
 }

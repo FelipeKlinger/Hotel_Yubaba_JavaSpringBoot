@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "categories")
 public class Categoria {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +18,8 @@ public class Categoria {
     @Column(nullable = false, unique = true, length = 50)
     private String nom;
 
-    public Categoria() {}
+    public Categoria() {
+    }
 
     public Categoria(String nom) {
         this.nom = nom;

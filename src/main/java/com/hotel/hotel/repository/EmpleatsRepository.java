@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.hotel.hotel.model.*;
 
 @Repository
-public interface EmpleatsRepository extends JpaRepository<Empleat, Long>{
-    
+public interface EmpleatsRepository extends JpaRepository<Empleat, Long> {
+
     Optional<Empleat> findByNom(String nom);
-    Optional<Empleat> findById(Long id);    
+
+    Optional<Empleat> findById(Long id);
 }

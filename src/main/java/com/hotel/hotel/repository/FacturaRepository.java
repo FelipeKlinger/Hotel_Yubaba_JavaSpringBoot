@@ -9,12 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.hotel.hotel.model.Factura;
 
 @Repository
-public interface  FacturaRepository  extends JpaRepository<Factura, Long> {
+public interface FacturaRepository extends JpaRepository<Factura, Long> {
 
     Optional<Factura> findByReservaId(Long id);
 
-
-   
-
-    
 }

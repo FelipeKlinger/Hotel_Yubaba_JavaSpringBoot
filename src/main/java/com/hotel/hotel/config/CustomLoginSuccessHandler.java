@@ -1,21 +1,14 @@
 package com.hotel.hotel.config;
 
-
-
-
 import java.io.IOException;
 
 import java.util.Collection;
-
-
 
 import jakarta.servlet.ServletException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 import jakarta.servlet.http.HttpServletResponse;
-
-
 
 import org.springframework.security.core.Authentication;
 
@@ -25,56 +18,42 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import org.springframework.stereotype.Component;
 
-
-
 @Component
 
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
+    @Override
 
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 
- @Override
+            Authentication authentication) throws IOException, ServletException {
 
- public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
- Authentication authentication) throws IOException, ServletException {
+        String redirectURL = "/home"; // Pàgina per defecte
 
+        for (GrantedAuthority authority : authorities) {
 
+            String role = authority.getAuthority();
 
- Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+            if (role.equals("ROLE_ADMIN")) {
 
+                redirectURL = "/admin/dashboard";
 
+                break;
 
- String redirectURL = "/home"; // Pàgina per defecte
+            } else if (role.equals("ROLE_CLIENT")) {
 
+                redirectURL = "/client/home";
 
+                break;
 
- for (GrantedAuthority authority : authorities) {
+            }
 
- String role = authority.getAuthority();
+        }
 
+        response.sendRedirect(redirectURL);
 
-
- if (role.equals("ROLE_ADMIN")) {
-
- redirectURL = "/admin/dashboard";
-
- break;
-
- } else if (role.equals("ROLE_CLIENT")) {
-
- redirectURL = "/client/home";
-
- break;
-
- }
-
- }
-
-
-
- response.sendRedirect(redirectURL);
-
- }
+    }
 
 }

@@ -14,17 +14,14 @@ import com.hotel.hotel.repository.HotelRepository;
 
 import jakarta.servlet.http.HttpSession;
 
-
 @Controller
 public class HotelController {
-
 
     private final HotelRepository hotelRepository;
 
     public HotelController(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
-
 
     @GetMapping("/")
     public String index() {
@@ -35,15 +32,14 @@ public class HotelController {
     public String showCategories(Model model) {
         List<Hotel> hotels = hotelRepository.findAll();
         model.addAttribute("hotels", hotels);
-        return "hotels/llistat"; 
+        return "hotels/llistat";
     }
-
 
     @GetMapping("/hotels/{id}")
     public String infohotel(@PathVariable Long id, Model model, HttpSession session) {
 
         Optional<Hotel> opt = this.hotelRepository.findById(id);
-        
+
         if (opt.isPresent()) {
             session.setAttribute("id_hotel", id);
             Hotel h = opt.get();
@@ -54,9 +50,7 @@ public class HotelController {
 
         }
 
-        return "error";     
+        return "error";
     }
-    
-    
 
 }
