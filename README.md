@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://blog.academiadesarrolloweb.com/wp-content/uploads/2023/11/logos.png" alt="Logos" width="600">
+    <img src="https://www.qindel.com/wp-content/uploads/2023/04/spring-boot.jpeg" alt="Logos" width="600">
 </p>
 
 # Aplicació Web per a la Gestió d'Hotels
